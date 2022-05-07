@@ -1,6 +1,5 @@
 // We import the CSS which is extracted to its own file by esbuild.
 // Remove this line if you add a your own CSS build pipeline (e.g postcss).
-import "../css/app.css"
 
 // If you want to use Phoenix channels, run `mix help phx.gen.channel`
 // to get started and then uncomment the line below.
@@ -12,6 +11,9 @@ import "../css/app.css"
 // import them using relative paths:
 //
 //     import "../vendor/some-package.js"
+import Alpine from "../node_modules/alpinejs"
+Alpine.start()
+window.Alpine = Alpine;
 //
 // Alternatively, you can `npm install some-package --prefix assets` and import
 // them using a path starting with the package name:
@@ -27,7 +29,17 @@ import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
+// Change TO
+let liveSocket = new LiveSocket("/live", Socket, {
+    params: {_csrf_token: csrfToken},
+    dom: {
+        onBeforeElUpdated(from, to) {
+            if (from._x_dataStack) {
+                window.Alpine.clone(from, to);
+            }
+        }
+    }
+})
 
 // Show progress bar on live navigation and form submits
 topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})

@@ -26,7 +26,8 @@ config :pento, PentoWeb.Endpoint,
   secret_key_base: "TGg1FbkgevMNiToncZDRoZ+/yFHJ1PogAdOaewmlYy8klbYi1Gl2QO/1JYmS/RDx",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
 # ## SSL Support
