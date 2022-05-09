@@ -27,10 +27,10 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
-
+import Hooks from"./_hooks"
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 // Change TO
-let liveSocket = new LiveSocket("/live", Socket, {
+let liveSocket = new LiveSocket("/live", Socket, { hooks: Hooks,
     params: {_csrf_token: csrfToken},
     dom: {
         onBeforeElUpdated(from, to) {

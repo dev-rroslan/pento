@@ -7,7 +7,7 @@ defmodule Pento.MixProject do
       version: "0.1.0",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:gettext] ++ Mix.compilers(),
+      compilers: [:gettext] ++ Mix.compilers() ++ [:surface],
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -55,6 +55,8 @@ defmodule Pento.MixProject do
       {:sobelow, "~> 0.8", only: :dev},
       {:live_ui_kit, "~> 0.1.7"},
       {:ecto_psql_extras, "~> 0.7"},
+      {:surface, "~> 0.7.4"},
+
     ]
   end
 
