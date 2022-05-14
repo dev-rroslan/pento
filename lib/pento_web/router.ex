@@ -89,5 +89,7 @@ defmodule PentoWeb.Router do
     get "/users/confirm/:token", UserConfirmationController, :edit
     post "/users/confirm/:token", UserConfirmationController, :update
     live "/demo", Demo
+    live "/guess", WrongLive
+    live "/light", LightLive
   end
 end

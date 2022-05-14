@@ -1,0 +1,9 @@
+<h1 class="text-6xl text-center">Your score: <span class="text-red-800"><%= @score %></span></h1>
+    <h2 class="text-center text-4xl font-semibold mb-8 text-indigo-700 mt-5">
+    <%= @message %>
+    </h2>
+    <h2 class="text-center italic hover:not-italic text-2xl mb-8">
+    <%= for n <- 1..10 do %>
+    <a href="#" phx-click = "guess" phx-value-number = {n}><%= n %></a>
+    <% end %>
+    </h2>
