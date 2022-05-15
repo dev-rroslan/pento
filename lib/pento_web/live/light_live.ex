@@ -48,7 +48,16 @@ defmodule PentoWeb.LightLive do
     {:noreply, socket}
   end
 
+  def handle_event("up", _, socket) do
+    socket = update(socket, :brightness, &(&1 + 10))
+    {:noreply, socket}
+  end
+
   def handle_event("down", _, %{assigns: %{brightness: brightness}}=socket) when brightness <= 0 do
+    {:noreply, socket}
+  end
+  def handle_event("down", _, socket) do
+    socket = update(socket, :brightness, &(&1 - 10))
     {:noreply, socket}
   end
 
