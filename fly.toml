@@ -1,6 +1,6 @@
-# fly.toml file generated for late-firefly-8317 on 2022-05-07T09:16:16+08:00
+# fly.toml file generated for young-bird-3990 on 2022-05-16T15:14:30+08:00
 
-app = "late-firefly-8317"
+app = "young-bird-3990"
 
 kill_signal = "SIGTERM"
 kill_timeout = 5
@@ -10,7 +10,7 @@ processes = []
   release_command = "/app/bin/migrate"
 
 [env]
-  PHX_HOST = "late-firefly-8317.fly.dev"
+  PHX_HOST = "young-bird-3990.fly.dev"
   PORT = "8080"
 
 [experimental]
