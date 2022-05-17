@@ -5,12 +5,13 @@ defmodule Pento.MixProject do
     [
       app: :pento,
       version: "0.1.0",
-      elixir: "~> 1.12",
+      elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:gettext] ++ Mix.compilers() ++ [:surface],
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      releases: releases()
     ]
   end
 
@@ -21,6 +22,15 @@ defmodule Pento.MixProject do
     [
       mod: {Pento.Application, []},
       extra_applications: [:logger, :runtime_tools]
+    ]
+  end
+
+  defp releases() do
+    [
+      pento: [
+        include_executables_for: [:unix],
+        cookie: "9c5tGPfmZJysSD9y-kD78ffMY7vKl87dS4JwDC1DmSE3E1baf6eHRg=="
+      ]
     ]
   end
 
@@ -56,6 +66,11 @@ defmodule Pento.MixProject do
       {:live_ui_kit, "~> 0.1.7"},
       {:ecto_psql_extras, "~> 0.7"},
       {:surface, "~> 0.7.4"},
+      {:libcluster, "~> 3.3"},
+      {:kino, "~> 0.6.1"},
+      {:kino_vega_lite, "~> 0.1.1"},
+      {:vega_lite, "~> 0.1.4"},
+      {:table, "~> 0.1.1"}
 
     ]
   end

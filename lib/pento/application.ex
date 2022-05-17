@@ -7,6 +7,7 @@ defmodule Pento.Application do
 
   @impl true
   def start(_type, _args) do
+    topologies = Application.get_env(:libcluster, :topologies) || []
     children = [
       # Start the Ecto repository
       Pento.Repo,
@@ -15,9 +16,10 @@ defmodule Pento.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Pento.PubSub},
       # Start the Endpoint (http/https)
-      PentoWeb.Endpoint
+      PentoWeb.Endpoint,
       # Start a worker by calling: Pento.Worker.start_link(arg)
       # {Pento.Worker, arg}
+      {Cluster.Supervisor, [topologies, [name: Pento.ClusterSupervisor]]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
